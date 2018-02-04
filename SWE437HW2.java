@@ -70,13 +70,23 @@ public class SWE437HW2{
 		 * uses the getRandomQuote() method in Quote class
 		 */
 		public static void generateRandomQuote() {
-			Quote quoteTmp = quoteList.getRandomQuote();							// new instance of Quote, assigns random quote to it
-			System.out.println("\n");												// prints new line
-			System.out.println ("Random quote of the day:");						// prints Random quote of the day
-			System.out.println ("\n"+quoteTmp.getQuoteText());						// prints quote text
-			System.out.println ("\n" + quoteTmp.getAuthor());						// prints quote author
-			System.out.println ("\n");												// prints new line
+			Quote quoteTmp = quoteList.getRandomQuote();						// new instance of Quote, assigns random quote to it
+			System.out.println("\n");								// prints new line
+			System.out.println ("Random quote of the day:");					// prints Random quote of the day
+			System.out.println ("\n"+quoteTmp.getQuoteText());					// prints quote text
+			System.out.println ("\n" + quoteTmp.getAuthor());					// prints quote author
+			System.out.println ("\n");								// prints new line
 		}
+
+
+	/**
+	 * prints the search menu which is the subset of main menu( option 2)
+	 * saves the searched terms and results in hash-map, displays it on entry
+	 * takes the user input first, then displays 3 options for searching user's input
+	 * if user selects a valid option then it searches and display the results
+	 * if user select invalid option goes back to main menu 
+	 */
+	public static void PrintSearchMenu() {}
 
 		/**
 		 * This was taken directly from the quoteserver.java class

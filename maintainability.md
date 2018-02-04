@@ -3,6 +3,7 @@
 ###### SWE437 - Homework 2
 
 ```
+<<<<<<< HEAD
 In order to future proof our code, we would need to make sure that our code 
 is broken down into different reusable components as much as possible.
 Thanks to the original programmers that made everything easy for us to
@@ -29,5 +30,12 @@ the host name as the application changes and grow. We also need to decompose our
 as much as we can, so that we can reuse them at a later time. For example, 
 method userSearchAnswer() and  printMenu().
 
+=======
+In order to future proof our code, we would need to make sure that our code is broken down into different reusable components as much as possible.
+Thanks to the original programmers that made everything easy for us to reuse the existing classes to work with our new written code.
+For example, we create a new class call SWE437HW2.java. This class contain related information, menu, and functions, enough to re-create similar functionality of the web application into a command line interface.
+We designed this class so that we can make various calls to the existing classes such as QuoteList, Quotes.xml, and Quote, which in turn obtain the same functionality as the web app. 
+Next time, even if we need to write a mobile or desktop GUI app, we should be able to apply this reusable strategy to create the specific code for specific application. 
+>>>>>>> 36ad572e891007c19511b13cb6cd357fedb56ae6
 ```
 

@@ -41,6 +41,20 @@ public class SWE437HW2{
 			}
 		}
 
+		/**
+		 * This was taken directly from the quoteserver.java class
+		 * Slightly modified
+		 * changed out.println to System.out.println
+		 * deleted all the html related codes
+		 */
+		private void printSearch (PrintWriter out, String searchText, String searchScope) {
+			if (searchText != null && !searchText.equals(""))
+			{  // Received a search request
+
+			}
+			System.out.println("\n");
+		}
+
 	}
 }
 

@@ -62,7 +62,38 @@ public class SWE437HW2{
 		private void printSearch (PrintWriter out, String searchText, String searchScope) {
 			if (searchText != null && !searchText.equals(""))
 			{  // Received a search request
+				int searchScopeInt = QuoteList.SearchBothVal; // Default
+				if (searchScope != null && !searchScope.equals(""))
+				{  // If no parameter value, let it default.
+					if (searchScope.equals ("quote"))
+					{
+						searchScopeInt = QuoteList.SearchTextVal;
+					} else if (searchScope.equals ("author"))
+					{
+						searchScopeInt = QuoteList.SearchAuthorVal;
+					} else if (searchScope.equals ("both"))
+					{
+						searchScopeInt = QuoteList.SearchBothVal;
+					}
+				}
 
+				QuoteList searchRes = quoteList.search (searchText, searchScopeInt);
+				Quote quoteTmp;
+				if (searchRes.getSize() == 0)
+				{
+					System.out.println("Your search "+ searchText +" did not match any quotes.");
+				}
+				else
+				{
+					System.out.println ("\n");
+					for (int i = 0; i < searchRes.getSize() ; i++)
+					{
+						quoteTmp = searchRes.getQuote(i);
+						System.out.println("\n" + quoteTmp.getQuoteText() + "\n");
+						System.out.println("\n" + quoteTmp.getAuthor() + "\n");
+					}
+					System.out.println("\n");
+				}
 			}
 			System.out.println("\n");
 		}

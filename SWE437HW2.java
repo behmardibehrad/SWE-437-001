@@ -111,31 +111,31 @@ public class SWE437HW2{
 			System.out.println("4. Back to Main Menu\t\t(press 4)");							// prints a msg for user
 			searchOption = keyboard.nextInt();										// takes the user criteria
 
-			switch(searchOption){	// switch for determining user's criteria selections
+			switch(searchOption){												// switch for determining user's criteria selections
 
-				case 1:	// if user select 1
-					returnQuotes = quoteList.search(searchText, 0);	// cross check the term for author's name
-					savedSearches.put(searchText, returnQuotes);	// save the result to display later for saved searches
-					Quote quoteTmp;	// new quote
-					for (int i = 0; i < returnQuotes.getSize() ; i++){ // loops through all the results
-						quoteTmp = returnQuotes.getQuote(i);	// assign the result to quote
-						System.out.println("\n" + quoteTmp.getQuoteText() + "\n");	// display the quote text
-						System.out.println (quoteTmp.getAuthor() + "\n");}	// display the quote author
-					break;	// break out of switch
-				case 2:	// if user select 2
-					returnQuotes =quoteList.search(searchText, 1);	// cross check the term for quotes text
-					savedSearches.put(searchText, returnQuotes);	// save the result to display later for saved searches
-					for (int i = 0; i < returnQuotes.getSize() ; i++){ // loops through all the results
-						quoteTmp = returnQuotes.getQuote(i);	// assign the result to quote
-						System.out.println("\n" + quoteTmp.getQuoteText() + "\n");	// display the quote text
-						System.out.println (quoteTmp.getAuthor() + "\n");}	// display the quote author
-					break;	// break out of switch
-				case 3:	   // if user select 3
-					returnQuotes =quoteList.search(searchText, 2);	// cross check the term for both author's name and quote text
-					savedSearches.put(searchText, returnQuotes);	// save the result to display later for saved searches
-					for (int i = 0; i < returnQuotes.getSize() ; i++){ // loops through all the results
-						quoteTmp = returnQuotes.getQuote(i);	// assign the result to quote
-						System.out.println("\n" + quoteTmp.getQuoteText() + "\n");	// display the quote text
+				case 1:													// if user select 1
+					returnQuotes = quoteList.search(searchText, 0);							// cross check the term for author's name
+					savedSearches.put(searchText, returnQuotes);							// save the result to display later for saved searches
+					Quote quoteTmp;											// new quote
+					for (int i = 0; i < returnQuotes.getSize() ; i++){ 						// loops through all the results
+						quoteTmp = returnQuotes.getQuote(i);							// assign the result to quote
+						System.out.println("\n" + quoteTmp.getQuoteText() + "\n");				// display the quote text
+						System.out.println (quoteTmp.getAuthor() + "\n");}					// display the quote author
+					break;												// break out of switch
+				case 2:													// if user select 2
+					returnQuotes =quoteList.search(searchText, 1);							// cross check the term for quotes text
+					savedSearches.put(searchText, returnQuotes);							// save the result to display later for saved searches
+					for (int i = 0; i < returnQuotes.getSize() ; i++){ 						// loops through all the results
+						quoteTmp = returnQuotes.getQuote(i);							// assign the result to quote
+						System.out.println("\n" + quoteTmp.getQuoteText() + "\n");				// display the quote text
+						System.out.println (quoteTmp.getAuthor() + "\n");}					// display the quote author
+					break;												// break out of switch
+				case 3:	  												 // if user select 3
+					returnQuotes =quoteList.search(searchText, 2);							// cross check the term for both author's name and quote text
+					savedSearches.put(searchText, returnQuotes);							// save the result to display later for saved searches
+					for (int i = 0; i < returnQuotes.getSize() ; i++){ 						// loops through all the results
+						quoteTmp = returnQuotes.getQuote(i);							// assign the result to quote
+						System.out.println("\n" + quoteTmp.getQuoteText() + "\n");				// display the quote text
 
 		}
 

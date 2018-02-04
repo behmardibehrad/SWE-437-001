@@ -9,6 +9,10 @@
 	- cd /path/to/SWE-437-001-Assignment-1
 ###
 
-#### 3. Compile the main class 
+#### 3. Compile the main class to create an executable
 	- javac SWE437HW2.java
+###
+
+#### 4. Run the executable 
+	- java SWE437HW2
 ###

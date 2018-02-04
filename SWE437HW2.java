@@ -87,16 +87,32 @@ public class SWE437HW2{
 		 * if user select invalid option goes back to main menu
 		 */
 		public static void PrintSearchMenu() {
-			Quote quoteTmp1;																		// create a new Quote
+			Quote quoteTmp1;											// create a new Quote
 			System.out.println("***************Most Recent Searches***************");				// prints Most Recent Searches
-			for (Entry<String, QuoteList> entry : savedSearches.entrySet()) {						// for every entry in saved searches
-				System.out.println("searched term: "+ entry.getKey() + "\n");						// prints the user searched term
-				for(int i=0; i<entry.getValue().getSize(); i++) {									// for the user searched term
-					System.out.println(entry.getValue().getQuote(i).getAuthor()+"\n");				// prints the resulted quote's author
+			for (Entry<String, QuoteList> entry : savedSearches.entrySet()) {					// for every entry in saved searches
+				System.out.println("searched term: "+ entry.getKey() + "\n");					// prints the user searched term
+				for(int i=0; i<entry.getValue().getSize(); i++) {						// for the user searched term
+					System.out.println(entry.getValue().getQuote(i).getAuthor()+"\n");			// prints the resulted quote's author
 					System.out.println(entry.getValue().getQuote(i).getQuoteText()+"\n");			// prints the resulted quote text
 				}
 			}
 			System.out.println("**************************************************");
+
+
+		Scanner keyboard = new Scanner(System.in);  									// Reading from keyboard
+		QuoteList returnQuotes = new QuoteList();									// new QuoteList to store the search result
+		String searchText = "";												// saves the user entered search term
+		int searchOption = 0;												// saves the user search criteria 
+		System.out.println(" Please Enter the search term:");								// prints a msg for user input
+		searchText = keyboard.nextLine();										// reads the user input and saves it to searchText
+		System.out.println("Please select from the following options: ");						// prints a msg for user
+		System.out.println("1. Search by Author\t\t(press 1)");								// prints a msg for user
+		System.out.println("2. Search by quote\t\t(press 2)");								// prints a msg for user
+		System.out.println("3. Both\t\t\t\t(press 3)");									// prints a msg for user
+		System.out.println("4. Back to Main Menu\t\t(press 4)");							// prints a msg for user
+		searchOption = keyboard.nextInt();										// takes the user criteria
+
+
 		}
 
 		/**

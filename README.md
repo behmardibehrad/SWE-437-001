@@ -1,5 +1,5 @@
 # SWE-437-001
-## Please follow the steps to execute the command line interface application 
+## Instruction for running Quotes' Command Line Interface:
 
 #### 1. Download the repository on your local machine
 	- git clone https://github.com/behmardibehrad/SWE-437-001-Assignment-1.git

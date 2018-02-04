@@ -79,14 +79,25 @@ public class SWE437HW2{
 		}
 
 
-	/**
-	 * prints the search menu which is the subset of main menu( option 2)
-	 * saves the searched terms and results in hash-map, displays it on entry
-	 * takes the user input first, then displays 3 options for searching user's input
-	 * if user selects a valid option then it searches and display the results
-	 * if user select invalid option goes back to main menu 
-	 */
-	public static void PrintSearchMenu() {}
+		/**
+		 * prints the search menu which is the subset of main menu( option 2)
+		 * saves the searched terms and results in hash-map, displays it on entry
+		 * takes the user input first, then displays 3 options for searching user's input
+		 * if user selects a valid option then it searches and display the results
+		 * if user select invalid option goes back to main menu
+		 */
+		public static void PrintSearchMenu() {
+			Quote quoteTmp1;																		// create a new Quote
+			System.out.println("***************Most Recent Searches***************");				// prints Most Recent Searches
+			for (Entry<String, QuoteList> entry : savedSearches.entrySet()) {						// for every entry in saved searches
+				System.out.println("searched term: "+ entry.getKey() + "\n");						// prints the user searched term
+				for(int i=0; i<entry.getValue().getSize(); i++) {									// for the user searched term
+					System.out.println(entry.getValue().getQuote(i).getAuthor()+"\n");				// prints the resulted quote's author
+					System.out.println(entry.getValue().getQuote(i).getQuoteText()+"\n");			// prints the resulted quote text
+				}
+			}
+			System.out.println("**************************************************");
+		}
 
 		/**
 		 * This was taken directly from the quoteserver.java class

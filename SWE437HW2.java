@@ -41,29 +41,42 @@ public class SWE437HW2{
 			}
 		}
 
-	/**
-	 * takes the user selection as input
-	 * determines the user input 1 or 2 or 3 
-	 * if user's input is a valid option
-	 * returns the user's input
-	 * else prints an error and goes back to main menu
-	 */
-	public static int userAnswer(int userAnswer) {
-		int returnValue = 0;									// the return value
-		switch(userAnswer){									// check the user's input
-		case 1:											// if user selected 1
-			returnValue= 1;									// sets the returnValue to 1	
-			break;										// breaks out of switch
-		case 2:											// if user selected 2
-			returnValue = 2;								// sets the returnValue to 2
-			break;										// breaks out of switch
-		case 3:											// if user selected 3
-			System.exit(0);									// exits the program
-		default:										// default
-			System.out.println("Invalid Input!\n");						// prints Invalid Input
-			printMenu();}									// goes back to main menu
-		return returnValue;									// returns the returnValue
-	}
+		/**
+		 * takes the user selection as input
+		 * determines the user input 1 or 2 or 3
+		 * if user's input is a valid option
+		 * returns the user's input
+		 * else prints an error and goes back to main menu
+		 */
+		public static int userAnswer(int userAnswer) {
+			int returnValue = 0;									// the return value
+			switch(userAnswer){									// check the user's input
+			case 1:											// if user selected 1
+				returnValue= 1;									// sets the returnValue to 1
+				break;										// breaks out of switch
+			case 2:											// if user selected 2
+				returnValue = 2;								// sets the returnValue to 2
+				break;										// breaks out of switch
+			case 3:											// if user selected 3
+				System.exit(0);									// exits the program
+			default:										// default
+				System.out.println("Invalid Input!\n");						// prints Invalid Input
+				printMenu();}									// goes back to main menu
+			return returnValue;									// returns the returnValue
+		}
+
+		/**
+		 * void function to generates random quote
+		 * uses the getRandomQuote() method in Quote class
+		 */
+		public static void generateRandomQuote() {
+			Quote quoteTmp = quoteList.getRandomQuote();							// new instance of Quote, assigns random quote to it
+			System.out.println("\n");												// prints new line
+			System.out.println ("Random quote of the day:");						// prints Random quote of the day
+			System.out.println ("\n"+quoteTmp.getQuoteText());						// prints quote text
+			System.out.println ("\n" + quoteTmp.getAuthor());						// prints quote author
+			System.out.println ("\n");												// prints new line
+		}
 
 		/**
 		 * This was taken directly from the quoteserver.java class

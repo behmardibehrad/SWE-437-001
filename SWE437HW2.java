@@ -25,19 +25,19 @@ public class SWE437HW2{
 			System.out.println("1. Get a random quote\t(press 1)");				// Printing Menu options for user
 			System.out.println("2. Search\t\t(press 2)");					// Printing Menu options for user
 			System.out.println("3. Exit\t\t\t(press 3)");					// Printing Menu options for user
-			if (keyboard.hasNextInt()) 								// if user selects an integer
+			if (keyboard.hasNextInt()) 							// if user selects an integer
 			{
-				mainMenuUsersChoice = keyboard.nextInt(); 					// Scan users input as an int
-				if(userAnswer(mainMenuUsersChoice)==1) {					// if user selects 1
-					generateRandomQuote();							// generate a random quote
-					printMenu();}								// print the main menu
-				else if(userAnswer(mainMenuUsersChoice)==2){					// if user selects 2
-					PrintSearchMenu();}							// print the search menu
+				mainMenuUsersChoice = keyboard.nextInt(); 				// Scan users input as an int
+				if(userAnswer(mainMenuUsersChoice)==1) {				// if user selects 1
+					generateRandomQuote();						// generate a random quote
+					printMenu();}							// print the main menu
+				else if(userAnswer(mainMenuUsersChoice)==2){				// if user selects 2
+					PrintSearchMenu();}						// print the search menu
 			}
-			else											// if user doesnt select an integer
+			else										// if user doesnt select an integer
 			{
-				System.out.println("Invaid Input!\n");						// print Invaid Input
-				printMenu();									// go back to main menu
+				System.out.println("Invaid Input!\n");					// print Invaid Input
+				printMenu();								// go back to main menu
 			}
 		}
 

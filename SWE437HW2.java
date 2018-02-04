@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class SWE437HW2{	
 
-	static QuoteList quoteList;													// instance of QuoteList
+	static QuoteList quoteList;								// instance of QuoteList
 	static HashMap<String, QuoteList> savedSearches = new HashMap<>();			// instance of HashMap to save user's searches
 
 	public static void main(String[] args) {
 		QuoteSaxParser qParser = new QuoteSaxParser ("quotes.xml");			// reading the quotes.xml
-		quoteList = qParser.getQuoteList();										// saving the quotes.xml to quotelist 
-		printMenue();															// print main menu
+		quoteList = qParser.getQuoteList();						// saving the quotes.xml to quotelist 
+		printMenue();									// print main menu
 	}
 
 	/**
@@ -23,25 +23,25 @@ public class SWE437HW2{
 	 * prints error and loops back to main menu
 	 */
 	public static void printMenue() {
-		Scanner keyboard = new Scanner(System.in);  							// Creating a new Scanner named keyboard
-		int mainMenuUsersChoice = 0;											// User's Answer
+		Scanner keyboard = new Scanner(System.in);  					// Creating a new Scanner named keyboard
+		int mainMenuUsersChoice = 0;							// User's Answer
 		System.out.println("Please select from the following options:\n");		// Printing Menu options for user
-		System.out.println("1. Get a random quote\t(press 1)");					// Printing Menu options for user
-		System.out.println("2. Search\t\t(press 2)");							// Printing Menu options for user
-		System.out.println("3. Exit\t\t\t(press 3)");							// Printing Menu options for user
-		if (keyboard.hasNextInt()) 												// if user selects an integer
+		System.out.println("1. Get a random quote\t(press 1)");				// Printing Menu options for user
+		System.out.println("2. Search\t\t(press 2)");					// Printing Menu options for user
+		System.out.println("3. Exit\t\t\t(press 3)");					// Printing Menu options for user
+		if (keyboard.hasNextInt()) 							// if user selects an integer
 		{											
-			mainMenuUsersChoice = keyboard.nextInt(); 							// Scan users input as an int
-			if(userAnswer(mainMenuUsersChoice)==1) {							// if user selects 1
-				generateRandomQuote();											// generate a random quote
-				printMenue();}													// print the main menu 										
-			else if(userAnswer(mainMenuUsersChoice)==2){						// if user selects 2
-				PrintSearchMenu();}												// print the search menu
+			mainMenuUsersChoice = keyboard.nextInt(); 				// Scan users input as an int
+			if(userAnswer(mainMenuUsersChoice)==1) {				// if user selects 1
+				generateRandomQuote();						// generate a random quote
+				printMenue();}							// print the main menu 										
+			else if(userAnswer(mainMenuUsersChoice)==2){				// if user selects 2
+				PrintSearchMenu();}						// print the search menu
 		}
-		else																	// if user doesnt select an integer
+		else										// if user doesnt select an integer
 		{
-			System.out.println("Invaid Input!\n");								// print Invaid Input
-			printMenue();														// go back to main menu
+			System.out.println("Invaid Input!\n");					// print Invaid Input
+			printMenue();								// go back to main menu
 		}
 	}
 
@@ -54,20 +54,20 @@ public class SWE437HW2{
 	 * else prints an error and goes back to main menu
 	 */
 	public static int userAnswer(int userAnswer) {
-		int returnValue = 0;													// the return value
-		switch(userAnswer){														// check the user's input
-		case 1:																	// if user selected 1
-			returnValue= 1;														// sets the returnValue to 1	
-			break;																// breaks out of switch
-		case 2:																	// if user selected 2
-			returnValue = 2;													// sets the returnValue to 2
-			break;																// breaks out of switch
-		case 3:																	// if user selected 3
-			System.exit(0);														// exits the program
-		default:																// default
-			System.out.println("Invalid Input!\n");								// prints Invalid Input
-			printMenue();}														// goes back to main menu
-		return returnValue;														// returns the returnValue
+		int returnValue = 0;								// the return value
+		switch(userAnswer){								// check the user's input
+		case 1:										// if user selected 1
+			returnValue= 1;								// sets the returnValue to 1	
+			break;									// breaks out of switch
+		case 2:										// if user selected 2
+			returnValue = 2;							// sets the returnValue to 2
+			break;									// breaks out of switch
+		case 3:										// if user selected 3
+			System.exit(0);								// exits the program
+		default:									// default
+			System.out.println("Invalid Input!\n");					// prints Invalid Input
+			printMenue();}								// goes back to main menu
+		return returnValue;								// returns the returnValue
 	}
 
 
@@ -122,11 +122,11 @@ public class SWE437HW2{
 	 */
 	public static void generateRandomQuote() {
 		Quote quoteTmp = quoteList.getRandomQuote();							// new instance of Quote, assigns random quote to it
-		System.out.println("\n");												// prints new line
+		System.out.println("\n");									// prints new line
 		System.out.println ("Random quote of the day:");						// prints Random quote of the day
 		System.out.println ("\n"+quoteTmp.getQuoteText());						// prints quote text
 		System.out.println ("\n" + quoteTmp.getAuthor());						// prints quote author
-		System.out.println ("\n");												// prints new line
+		System.out.println ("\n");									// prints new line
 	}
 
 
@@ -138,65 +138,65 @@ public class SWE437HW2{
 	 * if user select invalid option goes back to main menu 
 	 */
 	public static void PrintSearchMenu() {
-		Quote quoteTmp1;																		// create a new Quote
+		Quote quoteTmp1;											// create a new Quote
 		System.out.println("***************Most Recent Searches***************");				// prints Most Recent Searches
-		for (Entry<String, QuoteList> entry : savedSearches.entrySet()) {						// for every entry in saved searches
-			System.out.println("searched term: "+ entry.getKey() + "\n");						// prints the user searched term
-			for(int i=0; i<entry.getValue().getSize(); i++) {									// for the user searched term
-				System.out.println(entry.getValue().getQuote(i).getAuthor()+"\n");				// prints the resulted quote's author
+		for (Entry<String, QuoteList> entry : savedSearches.entrySet()) {					// for every entry in saved searches
+			System.out.println("searched term: "+ entry.getKey() + "\n");					// prints the user searched term
+			for(int i=0; i<entry.getValue().getSize(); i++) {						// for the user searched term
+				System.out.println(entry.getValue().getQuote(i).getAuthor()+"\n");			// prints the resulted quote's author
 				System.out.println(entry.getValue().getQuote(i).getQuoteText()+"\n");			// prints the resulted quote text
 			}
 		}
 		System.out.println("**************************************************");
 
-		Scanner keyboard = new Scanner(System.in);  											// Reading from keyboard
-		QuoteList returnQuotes = new QuoteList();												// new QuoteList to store the search result
-		String searchText = "";																	// saves the user entered search term
-		int searchOption = 0;																	// saves the user search criteria 
-		System.out.println(" Please Enter the search term:");									// prints a msg for user input
-		searchText = keyboard.nextLine();														// reads the user input and saves it to searchText
-		System.out.println("Please select from the following options: ");						// prints a msg for user
-		System.out.println("1. Search by Author\t\t(press 1)");									// prints a msg for user
-		System.out.println("2. Search by quote\t\t(press 2)");									// prints a msg for user
-		System.out.println("3. Both\t\t\t\t(press 3)");											// prints a msg for user
-		System.out.println("4. Back to Main Menu\t\t(press 4)");								// prints a msg for user
-		searchOption = keyboard.nextInt();														// takes the user criteria
-		switch(searchOption){																	// switch for determining user's criteria selections
+		Scanner keyboard = new Scanner(System.in);  								// Reading from keyboard
+		QuoteList returnQuotes = new QuoteList();								// new QuoteList to store the search result
+		String searchText = "";											// saves the user entered search term
+		int searchOption = 0;											// saves the user search criteria 
+		System.out.println(" Please Enter the search term:");							// prints a msg for user input
+		searchText = keyboard.nextLine();									// reads the user input and saves it to searchText
+		System.out.println("Please select from the following options: ");					// prints a msg for user
+		System.out.println("1. Search by Author\t\t(press 1)");							// prints a msg for user
+		System.out.println("2. Search by quote\t\t(press 2)");							// prints a msg for user
+		System.out.println("3. Both\t\t\t\t(press 3)");								// prints a msg for user
+		System.out.println("4. Back to Main Menu\t\t(press 4)");						// prints a msg for user
+		searchOption = keyboard.nextInt();									// takes the user criteria
+		switch(searchOption){											// switch for determining user's criteria selections
 
-		case 1:																					// if user select 1
-			returnQuotes = quoteList.search(searchText, 0);										// cross check the term for author's name
-			savedSearches.put(searchText, returnQuotes);										// save the result to display later for saved searches
-			Quote quoteTmp;																		// new quote
-			for (int i = 0; i < returnQuotes.getSize() ; i++){									// loops through all the results
-				quoteTmp = returnQuotes.getQuote(i);											// assign the result to quote
-				System.out.println("\n" + quoteTmp.getQuoteText() + "\n");						// display the quote text
-				System.out.println (quoteTmp.getAuthor() + "\n");}								// display the quote author
-			break;																				// break out of switch 
-		case 2:																					// if user select 2
-			returnQuotes =quoteList.search(searchText, 1);										// cross check the term for quotes text 
-			savedSearches.put(searchText, returnQuotes);										// save the result to display later for saved searches
-			for (int i = 0; i < returnQuotes.getSize() ; i++){									// loops through all the results
-				quoteTmp = returnQuotes.getQuote(i);											// assign the result to quote
-				System.out.println("\n" + quoteTmp.getQuoteText() + "\n");						// display the quote text
-				System.out.println (quoteTmp.getAuthor() + "\n");}								// display the quote author
-			break;																				// break out of switch 
-		case 3:																				    // if user select 3
-			returnQuotes =quoteList.search(searchText, 2);										// cross check the term for both author's name and quote text
-			savedSearches.put(searchText, returnQuotes);										// save the result to display later for saved searches
-			for (int i = 0; i < returnQuotes.getSize() ; i++){									// loops through all the results
-				quoteTmp = returnQuotes.getQuote(i);											// assign the result to quote
-				System.out.println("\n" + quoteTmp.getQuoteText() + "\n");						// display the quote text
-				System.out.println (quoteTmp.getAuthor() + "\n");}								// display the quote author
-			break;																				// breaks out of switch
-		case 4:																			        // if user select 4
-			printMenue();																		// goes back to main menu
-			break;																				// breaks out of switch
+		case 1:													// if user select 1
+			returnQuotes = quoteList.search(searchText, 0);							// cross check the term for author's name
+			savedSearches.put(searchText, returnQuotes);							// save the result to display later for saved searches
+			Quote quoteTmp;											// new quote
+			for (int i = 0; i < returnQuotes.getSize() ; i++){						// loops through all the results
+				quoteTmp = returnQuotes.getQuote(i);							// assign the result to quote
+				System.out.println("\n" + quoteTmp.getQuoteText() + "\n");				// display the quote text
+				System.out.println (quoteTmp.getAuthor() + "\n");}					// display the quote author
+			break;												// break out of switch 
+		case 2:													// if user select 2
+			returnQuotes =quoteList.search(searchText, 1);							// cross check the term for quotes text 
+			savedSearches.put(searchText, returnQuotes);							// save the result to display later for saved searches
+			for (int i = 0; i < returnQuotes.getSize() ; i++){						// loops through all the results
+				quoteTmp = returnQuotes.getQuote(i);							// assign the result to quote
+				System.out.println("\n" + quoteTmp.getQuoteText() + "\n");				// display the quote text
+				System.out.println (quoteTmp.getAuthor() + "\n");}					// display the quote author
+			break;												// break out of switch 
+		case 3:													// if user select 3
+			returnQuotes =quoteList.search(searchText, 2);							// cross check the term for both author's name and quote text
+			savedSearches.put(searchText, returnQuotes);							// save the result to display later for saved searches
+			for (int i = 0; i < returnQuotes.getSize() ; i++){						// loops through all the results
+				quoteTmp = returnQuotes.getQuote(i);							// assign the result to quote
+				System.out.println("\n" + quoteTmp.getQuoteText() + "\n");				// display the quote text
+				System.out.println (quoteTmp.getAuthor() + "\n");}					// display the quote author
+			break;												// breaks out of switch
+		case 4:													// if user select 4
+			printMenue();											// goes back to main menu
+			break;												// breaks out of switch
 
-		default:																				// if none of the above is selected
-			System.out.println("Invaid Input!\n");												// prints Invaid Input
-			PrintSearchMenu();																	// prints the search menu again
-		}																						// when done withsearch 
-		printMenue();																			// goes back to main menu
+		default:												// if none of the above is selected
+			System.out.println("Invaid Input!\n");								// prints Invaid Input
+			PrintSearchMenu();										// prints the search menu again
+		}													// when done withsearch 
+		printMenue();												// goes back to main menu
 
 	}
 }

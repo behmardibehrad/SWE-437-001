@@ -49,7 +49,19 @@ public class SWE437HW2{
 	 * else prints an error and goes back to main menu
 	 */
 	public static int userAnswer(int userAnswer) {
-
+		int returnValue = 0;									// the return value
+		switch(userAnswer){									// check the user's input
+		case 1:											// if user selected 1
+			returnValue= 1;									// sets the returnValue to 1	
+			break;										// breaks out of switch
+		case 2:											// if user selected 2
+			returnValue = 2;								// sets the returnValue to 2
+			break;										// breaks out of switch
+		case 3:											// if user selected 3
+			System.exit(0);									// exits the program
+		default:										// default
+			System.out.println("Invalid Input!\n");						// prints Invalid Input
+			printMenu();}									// goes back to main menu
 		return returnValue;									// returns the returnValue
 	}
 

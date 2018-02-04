@@ -41,6 +41,18 @@ public class SWE437HW2{
 			}
 		}
 
+	/**
+	 * takes the user selection as input
+	 * determines the user input 1 or 2 or 3 
+	 * if user's input is a valid option
+	 * returns the user's input
+	 * else prints an error and goes back to main menu
+	 */
+	public static int userAnswer(int userAnswer) {
+
+		return returnValue;									// returns the returnValue
+	}
+
 		/**
 		 * This was taken directly from the quoteserver.java class
 		 * Slightly modified

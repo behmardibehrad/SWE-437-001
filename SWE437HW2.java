@@ -3,14 +3,24 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
+/* New Import*/
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
+import org.w3c.dom.*;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.*;
+import java.io.*;
+
 public class SWE437HW2{	
 
 	static QuoteList quoteList;								// instance of QuoteList
-	static HashMap<String, QuoteList> savedSearches = new HashMap<>();			// instance of HashMap to save user's searches
-
+	static HashMap<String, QuoteList> savedSearches = new HashMap<>();		// instance of HashMap to save user's searches
+    static QuoteSaxParser qParser;
 	public static void main(String[] args) {
-		QuoteSaxParser qParser = new QuoteSaxParser ("quotes.xml");			// reading the quotes.xml
-		quoteList = qParser.getQuoteList();						// saving the quotes.xml to quotelist 
+		qParser = new QuoteSaxParser ("quotes.xml");			// reading the quotes.xml
+		quoteList = qParser.getQuoteList();					// saving the quotes.xml to quotelist
 		printMenue();									// print main menu
 	}
 
@@ -82,24 +92,87 @@ public class SWE437HW2{
 	 * Calling helper function for adding quote
 	 */
 	public static void addQuoteMenu(){
-		Quote newQuote;
 		Scanner keyboard = new Scanner(System.in);
 		String author, quoteText;
 		System.out.println("Please enter author name:");
 		author = keyboard.nextLine();
 		System.out.println("Please enter quote text:");
 		quoteText = keyboard.nextLine();
-		System.out.println("Aurhor: " + author + ", quote: " + quoteText);
-
+		if(addQuote(author, quoteText)){
+			System.out.println("Quote has been successfully added to the list");
+		}
+		printMenue();
 	}
 
 	/**
-	 * Helper function to add new quote to the list
+	 * Helper function TO add new quote to the list
 	 * @returns boolean if successful
 	 */
-	public boolean addQuote(String author, String quoteText){
-		System.out.println("Author: " + author + ", text: " + quoteText);
-		return true;
+	public static boolean addQuote(String author, String quoteText){
+		Quote newQuote = new Quote(author, quoteText);
+		quoteList.setQuote(newQuote);
+		return saveToXml("quotes.xml", quoteList);
+
+	}
+
+	public static boolean saveToXml(String xmlFile, QuoteList pList){
+		Document dom;
+		Element quote = null;
+		Element author = null;
+		Element quoteText = null;
+		Quote tempQuote;
+		String tempAuthor, tempText;
+		// instance of a DocumentBuilderFactory
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+		try {
+			// use factory to get an instance of document builder
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			// create instance of DOM
+			dom = db.newDocument();
+
+			// create the root element
+			Element rootEle = dom.createElement("quote-list");
+
+			for(int i = 0; i<pList.getSize(); i++){
+				tempQuote = new Quote();
+				tempQuote = pList.getQuote(i);
+				// create data elements and place them under root
+				quote = dom.createElement("quote");
+				author = dom.createElement("author");
+				author.appendChild(dom.createTextNode(tempQuote.getAuthor()));
+				quoteText = dom.createElement("quote-text");
+				quoteText.appendChild(dom.createTextNode(tempQuote.getQuoteText()));
+				quote.appendChild(quoteText);
+				quote.appendChild(author);
+
+				rootEle.appendChild(quote);
+			}
+
+			dom.appendChild(rootEle);
+
+			try {
+				Transformer tr = TransformerFactory.newInstance().newTransformer();
+				tr.setOutputProperty(OutputKeys.INDENT, "yes");
+				tr.setOutputProperty(OutputKeys.METHOD, "xml");
+				tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+				//tr.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "roles.dtd");
+				tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+				// send DOM to file
+				tr.transform(new DOMSource(dom),
+						new StreamResult(new FileOutputStream(xmlFile)));
+				return true;
+
+			} catch (TransformerException te) {
+				System.out.println(te.getMessage());
+			} catch (IOException ioe) {
+				System.out.println(ioe.getMessage());
+			}
+		} catch (ParserConfigurationException pce) {
+			System.out.println("UsersXML: Error trying to instantiate DocumentBuilder " + pce);
+		}
+		return false;
 	}
 
 

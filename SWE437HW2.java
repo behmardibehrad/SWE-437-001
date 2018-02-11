@@ -59,7 +59,6 @@ public class SWE437HW2{
 		}
 	}
 
-
 	/**
 	 * takes the user selection as input
 	 * determines the user input 1 or 2 or 3 
@@ -124,7 +123,6 @@ public class SWE437HW2{
 		quoteList.setQuote(newQuote);												// add the new quote to the quote list
 		return saveToXml("quotes.xml", quoteList);									// save the quote to xml
 	}
-
 
 	/**
 	 * @param string to validate

@@ -94,10 +94,21 @@ public class SWE437HW2{
 	public static void addQuoteMenu(){
 		Scanner keyboard = new Scanner(System.in);
 		String author, quoteText;
-		System.out.println("Please enter author name:");
-		author = keyboard.nextLine();
-		System.out.println("Please enter quote text:");
-		quoteText = keyboard.nextLine();
+		boolean flag = false;
+		do{
+			System.out.println("Please enter author name:");
+			author = keyboard.nextLine();
+			flag = checkErrorInput(author);
+
+		}while(flag);
+		do{
+			System.out.println("Please enter quote text:");
+			quoteText = keyboard.nextLine();
+			flag = checkErrorInput(quoteText);
+
+		}while(flag);
+
+
 		if(addQuote(author, quoteText)){
 			System.out.println("Quote has been successfully added to the list");
 		}
@@ -112,9 +123,39 @@ public class SWE437HW2{
 		Quote newQuote = new Quote(author, quoteText);
 		quoteList.setQuote(newQuote);
 		return saveToXml("quotes.xml", quoteList);
-
 	}
 
+
+	/**
+	 * @param string to validate
+	 * @return return true is there's an error in input data
+	 */
+	public static boolean checkErrorInput(String text){
+		if (text.matches("[0-9]+") && text.length() > 2){
+			System.out.println("Incorrect Input");
+			return true;
+		}
+		if (text.equalsIgnoreCase((""))){
+			System.out.println("Input cannot be an empty string");
+			return true;
+		}
+		if (text.toLowerCase().contains("<script>".toLowerCase()) ||
+				text.toLowerCase().contains("DROP DATABASE".toLowerCase()) ||
+				text.toLowerCase().contains("DROP TABLE".toLowerCase()) ||
+				text.toLowerCase().contains("DELETE FROM".toLowerCase()) ||
+				text.toLowerCase().contains("SELECT FROM Users".toLowerCase())) {
+			System.out.println("Invalid input string, no scipt or database query allowed");
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 *
+	 * @param xmlFile xml file to be written
+	 * @param pList passing list
+	 * @return true if succesfully save to xml
+	 */
 	public static boolean saveToXml(String xmlFile, QuoteList pList){
 		Document dom;
 		Element quote = null;
@@ -156,7 +197,6 @@ public class SWE437HW2{
 				tr.setOutputProperty(OutputKeys.INDENT, "yes");
 				tr.setOutputProperty(OutputKeys.METHOD, "xml");
 				tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-				//tr.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "roles.dtd");
 				tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
 				// send DOM to file

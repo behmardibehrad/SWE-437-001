@@ -38,6 +38,9 @@ public class SWE437HW2{
 				printMenue();}							// print the main menu 										
 			else if(userAnswer(mainMenuUsersChoice)==2){				// if user selects 2
 				PrintSearchMenu();}						// print the search menu
+			else if(userAnswer(mainMenuUsersChoice) == 3){
+				addQuoteMenu();
+			}
 		}
 		else										// if user doesnt select an integer
 		{
@@ -72,6 +75,31 @@ public class SWE437HW2{
 			System.out.println("Invalid Input!\n");					// prints Invalid Input
 			printMenue();}								// goes back to main menu
 		return returnValue;								// returns the returnValue
+	}
+
+	/**
+	 * Add quote menu function
+	 * Calling helper function for adding quote
+	 */
+	public static void addQuoteMenu(){
+		Quote newQuote;
+		Scanner keyboard = new Scanner(System.in);
+		String author, quoteText;
+		System.out.println("Please enter author name:");
+		author = keyboard.nextLine();
+		System.out.println("Please enter quote text:");
+		quoteText = keyboard.nextLine();
+		System.out.println("Aurhor: " + author + ", quote: " + quoteText);
+
+	}
+
+	/**
+	 * Helper function to add new quote to the list
+	 * @returns boolean if successful
+	 */
+	public boolean addQuote(String author, String quoteText){
+		System.out.println("Author: " + author + ", text: " + quoteText);
+		return true;
 	}
 
 

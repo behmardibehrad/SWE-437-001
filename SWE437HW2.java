@@ -28,7 +28,8 @@ public class SWE437HW2{
 		System.out.println("Please select from the following options:\n");		// Printing Menu options for user
 		System.out.println("1. Get a random quote\t(press 1)");				// Printing Menu options for user
 		System.out.println("2. Search\t\t(press 2)");					// Printing Menu options for user
-		System.out.println("3. Exit\t\t\t(press 3)");					// Printing Menu options for user
+		System.out.println("3. Add new quote\t(press 3)");			// Add new quote
+		System.out.println("4. Exit\t\t\t(press 4)");					// Printing Menu options for user
 		if (keyboard.hasNextInt()) 							// if user selects an integer
 		{											
 			mainMenuUsersChoice = keyboard.nextInt(); 				// Scan users input as an int
@@ -62,8 +63,11 @@ public class SWE437HW2{
 		case 2:										// if user selected 2
 			returnValue = 2;							// sets the returnValue to 2
 			break;									// breaks out of switch
-		case 3:										// if user selected 3
-			System.exit(0);								// exits the program
+		case 3:
+			returnValue = 3;
+			break;
+		case 4:										// if user selected 3
+			System.exit(0);							// exits the program
 		default:									// default
 			System.out.println("Invalid Input!\n");					// prints Invalid Input
 			printMenue();}								// goes back to main menu

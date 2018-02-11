@@ -1,44 +1,62 @@
-60d0270,unknown,24 minutes ago,added pics
-266f134,unknown,80 minutes ago,editing Readme.md
-6b37968,unknown,82 minutes ago,editing Readme.md
-ff76876,unknown,84 minutes ago,editing Readme.md
-256d49b,unknown,2 hours ago,editing Readme.md
-bce3458,unknown,2 hours ago,Merge branch 'master' of https://github.com/behmardibehrad/SWE-437-001-Assignment-1
-0acb4de,unknown,2 hours ago,editing Readme.md
-834fd76,Seth,2 hours ago,Add new changes
-8cd472d,Seth,2 hours ago,Merge changes
-db1dfee,Seth,2 hours ago,New maintainability text
-36ad572,Behrad Behmardi,2 hours ago,Update maintainability.md
-78c22b1,Seth,2 hours ago,New maintainablility text
-4b04ccb,Seth,2 hours ago,Add blockquote text
-ee152d3,Seth,2 hours ago,Changed maintainability.txt to .md
-4c2b2de,Seth,2 hours ago,Add maintainablilty.txt
-f3f50b0,Behrad Behmardi,2 hours ago,Delete quoteserve.class
-bcef17c,Behrad Behmardi,2 hours ago,Delete SWE437HW2.class
-706c376,Behrad Behmardi,2 hours ago,Delete QuoteSaxParser.class
-7469622,Behrad Behmardi,2 hours ago,Delete QuoteSaxHandler.class
-eab9019,Behrad Behmardi,2 hours ago,Delete Quote.class
-e17c50b,Behrad Behmardi,2 hours ago,Delete QuoteList.class
-d9d7832,Behrad Behmardi,2 hours ago,organized the documentation
-adc9e50,Behrad Behmardi,2 hours ago,deleted package name
-74d5b92,Behrad Behmardi,3 hours ago,cleaned up and documentation
-1b49533,Behrad Behmardi,15 hours ago,fixed comments for PrintSearchMenu()
-a99205a,Seth,15 hours ago,Add switch statement
-c6f25d3,Behrad Behmardi,15 hours ago,added the scanner and menu options for PrintSearchMenu()
-df26713,Seth,15 hours ago,Add most recent searches layout
-0d16040,Behrad Behmardi,15 hours ago,created function PrintSearchMenu()
-31f3d01,Seth,15 hours ago,Create generateRandomQuote method
-7839528,Behrad Behmardi,15 hours ago,finished  userAnswer(int) function
-9d6bebd,Seth,15 hours ago,Completed printSearch method
-b083393,Behrad Behmardi,15 hours ago,created userAnswer(int) function
-c8903eb,Seth,15 hours ago,create printSearch method
-7001c69,Behrad Behmardi,15 hours ago, Added comments
-3ec44e5,Seth,15 hours ago,Delete e from printMenue method
-3d89fb4,Behrad Behmardi,15 hours ago, Added comments, User input read,check,return
-221dd89,admin,15 hours ago,Create printMenu method
-1f30b6e,Behrad Behmardi,16 hours ago,Merge branch 'master' of https://github.com/behmardibehrad/SWE-437-001
-9ad9b2d,Behrad Behmardi,16 hours ago, Created 'SWE437HW2.java', this will be the main class for our CLI
-b00a260,admin,8 days ago,Ignore Intellij code
-828aeb0,Behrad Behmardi,11 days ago,unzipped
-9a754a8,Behrad Behmardi,11 days ago,added all the files
-e1a376a,Behrad Behmardi,11 days ago,Create README.md
+f1b5b2c,unknown,6 minutes ago,docs
+69187ab,unknown,7 minutes ago,Merge branch 'master' of https://github.com/behmardibehrad/SWE-437-001-Assignment-1
+f72c252,Behrad Behmardi,7 minutes ago,data integrity check
+4c5e8ad,unknown,8 minutes ago,docs
+ad61127,Behrad Behmardi,57 minutes ago,data integrity check
+529db46,Behrad Behmardi,83 minutes ago,deleted extra files
+0d990e5,Behrad Behmardi,85 minutes ago,Added comments
+b134468,Seth,2 hours ago,word docx
+da07f41,Seth,3 hours ago,Add input validation
+a395107,Seth,5 hours ago,Merge branch 'master' of https://github.com/behmardibehrad/SWE-437-001-Assignment-1
+c6d4e85,Seth,5 hours ago,Add helper function and save to xml function
+392fe82,Behrad Behmardi,5 hours ago,doc
+dee8e03,Seth,22 hours ago,Add quote menu
+e516550,Seth,22 hours ago,Ignore .class and add adding quote option to the menu
+a51dc05,unknown,7 days ago,Merge branch 'master' of https://github.com/behmardibehrad/SWE-437-001-Assignment-1
+ad09d2f,unknown,7 days ago,added pdf
+60d0270,unknown,7 days ago,added pics
+95b97a9,Behrad Behmardi,7 days ago,Merge branch 'master' of https://github.com/behmardibehrad/SWE-437-001-Assignment-1
+bf75930,Behrad Behmardi,7 days ago,user input message changed
+266f134,unknown,7 days ago,editing Readme.md
+6b37968,unknown,7 days ago,editing Readme.md
+ff76876,unknown,7 days ago,editing Readme.md
+256d49b,unknown,7 days ago,editing Readme.md
+bce3458,unknown,7 days ago,Merge branch 'master' of https://github.com/behmardibehrad/SWE-437-001-Assignment-1
+0acb4de,unknown,7 days ago,editing Readme.md
+834fd76,Seth,7 days ago,Add new changes
+8cd472d,Seth,7 days ago,Merge changes
+db1dfee,Seth,7 days ago,New maintainability text
+36ad572,Behrad Behmardi,7 days ago,Update maintainability.md
+78c22b1,Seth,7 days ago,New maintainablility text
+4b04ccb,Seth,7 days ago,Add blockquote text
+ee152d3,Seth,7 days ago,Changed maintainability.txt to .md
+4c2b2de,Seth,7 days ago,Add maintainablilty.txt
+f3f50b0,Behrad Behmardi,7 days ago,Delete quoteserve.class
+bcef17c,Behrad Behmardi,7 days ago,Delete SWE437HW2.class
+706c376,Behrad Behmardi,7 days ago,Delete QuoteSaxParser.class
+7469622,Behrad Behmardi,7 days ago,Delete QuoteSaxHandler.class
+eab9019,Behrad Behmardi,7 days ago,Delete Quote.class
+e17c50b,Behrad Behmardi,7 days ago,Delete QuoteList.class
+d9d7832,Behrad Behmardi,7 days ago,organized the documentation
+adc9e50,Behrad Behmardi,7 days ago,deleted package name
+74d5b92,Behrad Behmardi,7 days ago,cleaned up and documentation
+1b49533,Behrad Behmardi,8 days ago,fixed comments for PrintSearchMenu()
+a99205a,Seth,8 days ago,Add switch statement
+c6f25d3,Behrad Behmardi,8 days ago,added the scanner and menu options for PrintSearchMenu()
+df26713,Seth,8 days ago,Add most recent searches layout
+0d16040,Behrad Behmardi,8 days ago,created function PrintSearchMenu()
+31f3d01,Seth,8 days ago,Create generateRandomQuote method
+7839528,Behrad Behmardi,8 days ago,finished  userAnswer(int) function
+9d6bebd,Seth,8 days ago,Completed printSearch method
+b083393,Behrad Behmardi,8 days ago,created userAnswer(int) function
+c8903eb,Seth,8 days ago,create printSearch method
+7001c69,Behrad Behmardi,8 days ago, Added comments
+3ec44e5,Seth,8 days ago,Delete e from printMenue method
+3d89fb4,Behrad Behmardi,8 days ago, Added comments, User input read,check,return
+221dd89,admin,8 days ago,Create printMenu method
+1f30b6e,Behrad Behmardi,8 days ago,Merge branch 'master' of https://github.com/behmardibehrad/SWE-437-001
+9ad9b2d,Behrad Behmardi,8 days ago, Created 'SWE437HW2.java', this will be the main class for our CLI
+b00a260,admin,2 weeks ago,Ignore Intellij code
+828aeb0,Behrad Behmardi,3 weeks ago,unzipped
+9a754a8,Behrad Behmardi,3 weeks ago,added all the files
+e1a376a,Behrad Behmardi,3 weeks ago,Create README.md

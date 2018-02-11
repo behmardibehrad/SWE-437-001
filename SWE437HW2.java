@@ -92,37 +92,37 @@ public class SWE437HW2{
 	 * Calling helper function for adding quote
 	 */
 	public static void addQuoteMenu(){
-		Scanner keyboard = new Scanner(System.in);
-		String author, quoteText;
-		boolean flag = false;
+		Scanner keyboard = new Scanner(System.in);					// Reading from keyboard
+		String author, quoteText;									// create a string for author's name and quote
+		boolean flag = false;										// create a boolean for operations check
 		do{
-			System.out.println("Please enter author name:");
-			author = keyboard.nextLine();
-			flag = checkErrorInput(author);
+			System.out.println("Please enter author's name:");		// print a message asking for author's name
+			author = keyboard.nextLine();							// read the user input and save it into author string
+			flag = checkErrorInput(author);							// call integrity check to validate the input and save the return to flag
+
+		}while(flag);												// if data integrity check failed
+		do{
+			System.out.println("Please enter quote text:");			// ask for a qoute text
+			quoteText = keyboard.nextLine();						// read the user input and save it to quote
+			flag = checkErrorInput(quoteText);						// call integrity check to validate the input and save the return to flag
 
 		}while(flag);
-		do{
-			System.out.println("Please enter quote text:");
-			quoteText = keyboard.nextLine();
-			flag = checkErrorInput(quoteText);
-
-		}while(flag);
 
 
-		if(addQuote(author, quoteText)){
-			System.out.println("Quote has been successfully added to the list");
+		if(addQuote(author, quoteText)){											// if the quote was added successfully, inform the user
+			System.out.println("Quote has been successfully added to the list");	// print a message that operation was successful
 		}
-		printMenue();
+		printMenue();																// return to main menu
 	}
 
 	/**
 	 * Helper function TO add new quote to the list
 	 * @returns boolean if successful
 	 */
-	public static boolean addQuote(String author, String quoteText){
-		Quote newQuote = new Quote(author, quoteText);
-		quoteList.setQuote(newQuote);
-		return saveToXml("quotes.xml", quoteList);
+	public static boolean addQuote(String author, String quoteText){				// take the author and quote as input
+		Quote newQuote = new Quote(author, quoteText);								// create a new quote using inputs
+		quoteList.setQuote(newQuote);												// add the new quote to the quote list
+		return saveToXml("quotes.xml", quoteList);									// save the quote to xml
 	}
 
 
@@ -130,24 +130,24 @@ public class SWE437HW2{
 	 * @param string to validate
 	 * @return return true is there's an error in input data
 	 */
-	public static boolean checkErrorInput(String text){
-		if (text.matches("[0-9]+") && text.length() > 2){
-			System.out.println("Incorrect Input");
-			return true;
+	public static boolean checkErrorInput(String text){								// data integroty check function, takes the user input
+		if (text.matches("[0-9]+") && text.length() > 2){							// if the text matches the regex and stirng is not empty
+			System.out.println("Incorrect Input");									// print an error message
+			return true;															// return true that there was an error
 		}
-		if (text.equalsIgnoreCase((""))){
-			System.out.println("Input cannot be an empty string");
-			return true;
+		if (text.equalsIgnoreCase((""))){											// if the string is empty
+			System.out.println("Input cannot be an empty string");					// print message 
+			return true;															// return true that there was an error
 		}
-		if (text.toLowerCase().contains("<script>".toLowerCase()) ||
-				text.toLowerCase().contains("DROP DATABASE".toLowerCase()) ||
-				text.toLowerCase().contains("DROP TABLE".toLowerCase()) ||
-				text.toLowerCase().contains("DELETE FROM".toLowerCase()) ||
-				text.toLowerCase().contains("SELECT FROM Users".toLowerCase())) {
-			System.out.println("Invalid input string, no scipt or database query allowed");
-			return true;
+		if (text.toLowerCase().contains("<script>".toLowerCase()) ||						// if the string is a script
+				text.toLowerCase().contains("DROP DATABASE".toLowerCase()) ||				// if the string is sql queries
+				text.toLowerCase().contains("DROP TABLE".toLowerCase()) ||					// if the string is	sql queries
+				text.toLowerCase().contains("DELETE FROM".toLowerCase()) ||					// if the string is sql queries
+				text.toLowerCase().contains("SELECT FROM Users".toLowerCase())) {			// if the string is sql queries	
+			System.out.println("Invalid input string, no scipt or database query allowed");	// print a message
+			return true;																	// return true that there was an error
 		}
-		return false;
+		return false;																		// return false meaning there was no error
 	}
 
 	/**
@@ -156,61 +156,56 @@ public class SWE437HW2{
 	 * @param pList passing list
 	 * @return true if succesfully save to xml
 	 */
-	public static boolean saveToXml(String xmlFile, QuoteList pList){
-		Document dom;
-		Element quote = null;
-		Element author = null;
-		Element quoteText = null;
-		Quote tempQuote;
-		String tempAuthor, tempText;
-		// instance of a DocumentBuilderFactory
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	public static boolean saveToXml(String xmlFile, QuoteList pList){							// saves the quotes to xml file
+		Document dom;																			// create a new document
+		Element quote = null;																	// create a new quote
+		Element author = null;																	// create a new author
+		Element quoteText = null;																// create a new quote text
+		Quote tempQuote;																		// create a new temporary quote
+		String tempAuthor, tempText;															// create a new string for author and quote 
+
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();						// instance of a DocumentBuilderFactory
 
 		try {
-			// use factory to get an instance of document builder
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			// create instance of DOM
-			dom = db.newDocument();
+			DocumentBuilder db = dbf.newDocumentBuilder();										// use factory to get an instance of document builder
+			dom = db.newDocument();																// create instance of DOM
+			Element rootEle = dom.createElement("quote-list");									// create the root element
 
-			// create the root element
-			Element rootEle = dom.createElement("quote-list");
-
-			for(int i = 0; i<pList.getSize(); i++){
-				tempQuote = new Quote();
-				tempQuote = pList.getQuote(i);
-				// create data elements and place them under root
-				quote = dom.createElement("quote");
-				author = dom.createElement("author");
-				author.appendChild(dom.createTextNode(tempQuote.getAuthor()));
-				quoteText = dom.createElement("quote-text");
-				quoteText.appendChild(dom.createTextNode(tempQuote.getQuoteText()));
-				quote.appendChild(quoteText);
-				quote.appendChild(author);
-
-				rootEle.appendChild(quote);
+			for(int i = 0; i<pList.getSize(); i++){												// for loop that iterates through the list
+				tempQuote = new Quote();														// create a new quote and set it to temporary quote
+				tempQuote = pList.getQuote(i);													// read all the quotes from the list
+				
+				quote = dom.createElement("quote");												// create data elements and place them under root
+				author = dom.createElement("author");										    // create data elements and place them under root
+				author.appendChild(dom.createTextNode(tempQuote.getAuthor()));					// create data elements and place them under root
+				quoteText = dom.createElement("quote-text");									// create data elements and place them under root
+				quoteText.appendChild(dom.createTextNode(tempQuote.getQuoteText()));			// create data elements and place them under root
+				quote.appendChild(quoteText);													// add the quote text to the quote
+				quote.appendChild(author);														// add the author's name to the quote
+				rootEle.appendChild(quote);														// add the quote to the root elemenet
 			}
 
-			dom.appendChild(rootEle);
+			dom.appendChild(rootEle);															// add the root elemenet to the document
 
 			try {
-				Transformer tr = TransformerFactory.newInstance().newTransformer();
-				tr.setOutputProperty(OutputKeys.INDENT, "yes");
-				tr.setOutputProperty(OutputKeys.METHOD, "xml");
-				tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-				tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+				Transformer tr = TransformerFactory.newInstance().newTransformer();				// converting from string format to xml 
+				tr.setOutputProperty(OutputKeys.INDENT, "yes");									// set the document indet to yes
+				tr.setOutputProperty(OutputKeys.METHOD, "xml");									// set the method to xml
+				tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");								// use encoding UTF-8
+				tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");			// set the output format
 
 				// send DOM to file
-				tr.transform(new DOMSource(dom),
-						new StreamResult(new FileOutputStream(xmlFile)));
-				return true;
+				tr.transform(new DOMSource(dom),												// try writing to the file
+						new StreamResult(new FileOutputStream(xmlFile)));						// get the input stream of the xml file
+				return true;																	// if successful return true
 
-			} catch (TransformerException te) {
-				System.out.println(te.getMessage());
-			} catch (IOException ioe) {
-				System.out.println(ioe.getMessage());
+			} catch (TransformerException te) {													// Error checking and exceptions for Transformer
+				System.out.println(te.getMessage());											// print the error message
+			} catch (IOException ioe) {															// Error checking and exceptions for IOException
+				System.out.println(ioe.getMessage());											// print the error message
 			}
-		} catch (ParserConfigurationException pce) {
-			System.out.println("UsersXML: Error trying to instantiate DocumentBuilder " + pce);
+		} catch (ParserConfigurationException pce) {											// Error checking and exceptions for parsing documents
+			System.out.println("UsersXML: Error trying to instantiate DocumentBuilder " + pce); // print the error message
 		}
 		return false;
 	}

@@ -131,10 +131,21 @@ public class SWE437HW2{
 	 * @return return true is there's an error in input data
 	 */
 	public static boolean checkErrorInput(String text){								// data integroty check function, takes the user input
-		if (text.matches("[0-9]+") && text.length() > 2){							// if the text matches the regex and stirng is not empty
+		if (text.matches("[0-9]+") && text.length() > 2){							// if the text matches the regex digits
 			System.out.println("Incorrect Input");									// print an error message
 			return true;															// return true that there was an error
 		}
+		
+		if (text.length() > 500){													// if the text is more than 500 characters (buffer overflow)
+			System.out.println("text is too long!");									// print an error message
+			return true;															// return true that there was an error
+		}
+		
+		if (text.toLowerCase().contains("\x89\x".toLowerCase())){					// if the text contains shell code (shell code)
+			System.out.println("Incorrect Input");									// print an error message
+			return true;															// return true that there was an error
+		}
+		
 		if (text.equalsIgnoreCase((""))){											// if the string is empty
 			System.out.println("Input cannot be an empty string");					// print message 
 			return true;															// return true that there was an error
@@ -144,12 +155,14 @@ public class SWE437HW2{
 				text.toLowerCase().contains("DROP TABLE".toLowerCase()) ||					// if the string is	sql queries
 				text.toLowerCase().contains("DELETE FROM".toLowerCase()) ||					// if the string is sql queries
 				text.toLowerCase().contains("SELECT FROM Users".toLowerCase())) {			// if the string is sql queries	
-			System.out.println("Invalid input string, no scipt or database query allowed");	// print a message
+			System.out.println("Invalid input string, no script or database query allowed");	// print a message
 			return true;																	// return true that there was an error
 		}
 		return false;																		// return false meaning there was no error
 	}
 
+	
+	
 	/**
 	 *
 	 * @param xmlFile xml file to be written

@@ -15,6 +15,7 @@ public class QuoteList
    /* package */ static final int SearchAuthorVal = 0;
    /* package */ static final int SearchTextVal   = 1;
    /* package */ static final int SearchBothVal   = 2;
+   /* package */ static final int SearchKeyword   = 3;
 
    // For returning a random quote
    private Random randomGen;
@@ -31,6 +32,10 @@ public class QuoteList
    public void setQuote (Quote q)
    {
       quoteArray.add (q);
+   }
+
+   public ArrayList<Quote> getQuoteArray() {
+      return quoteArray;
    }
 
    // Current size of the quote list
@@ -72,6 +77,9 @@ public class QuoteList
          {  // Found a matching author or quote, save it
             // System.out.println ("Matched Both ");
             returnQuote.setQuote (quote);
+         } else if (mode == SearchKeyword)
+         {
+            returnQuote = searchQuotesByKeyword(searchString);
          }
       }
       return returnQuote;
@@ -84,5 +92,17 @@ public class QuoteList
    public Quote getRandomQuote ()
    {
       return quoteArray.get (randomGen.nextInt (quoteArray.size()));
+   }
+
+   public QuoteList searchQuotesByKeyword(String str) {
+      QuoteList temp = new QuoteList();
+      for(Quote quote: quoteArray){
+         for(Keyword keyword: quote.getAllKeywords()){
+            if(keyword.getKeyword().equalsIgnoreCase(str)){
+               temp.setQuote(quote);
+            }
+         }
+      }
+      return temp;
    }
 }

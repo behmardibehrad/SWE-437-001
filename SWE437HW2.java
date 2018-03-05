@@ -1,4 +1,5 @@
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -19,9 +20,13 @@ public class SWE437HW2{
 	static HashMap<String, QuoteList> savedSearches = new HashMap<>();		// instance of HashMap to save user's searches
     static QuoteSaxParser qParser;
 	public static void main(String[] args) {
-		qParser = new QuoteSaxParser ("quotes.xml");			// reading the quotes.xml
+		qParser = new QuoteSaxParser ("src/quotes.xml");			// reading the quotes.xml
 		quoteList = qParser.getQuoteList();					// saving the quotes.xml to quotelist
 		printMenue();									// print main menu
+	}
+
+	public static int add(int x, int y){
+		return x+y;
 	}
 
 	/**
@@ -39,7 +44,10 @@ public class SWE437HW2{
 		System.out.println("1. Get a random quote\t(press 1)");				// Printing Menu options for user
 		System.out.println("2. Search\t\t(press 2)");					// Printing Menu options for user
 		System.out.println("3. Add new quote\t(press 3)");				// Add new quote
-		System.out.println("4. Exit\t\t\t(press 4)");					// Printing Menu options for user
+		System.out.println("4. Add new keyword to quote\t(press 4)");	// Add keyword
+		System.out.println("5. Get keywords from quote\t(press 5)");	// Get keyword
+		System.out.println("6. Delete keyword from quote\t(press 6)");	// Delete keyword
+		System.out.println("7. Exit\t\t\t(press 7)");					// Printing Menu options for user
 		if (keyboard.hasNextInt()) 							// if user selects an integer
 		{											
 			mainMenuUsersChoice = keyboard.nextInt(); 				// Scan users input as an int
@@ -50,6 +58,15 @@ public class SWE437HW2{
 				PrintSearchMenu();}						// print the search menu
 			else if(userAnswer(mainMenuUsersChoice) == 3){
 				addQuoteMenu();
+			}
+			else if(userAnswer(mainMenuUsersChoice) == 4){
+				addKeywordMenu();
+			}
+			else if(userAnswer(mainMenuUsersChoice) == 5){
+				getKeywordsMenu();
+			}
+			else if(userAnswer(mainMenuUsersChoice) == 6){
+				deleteKeywordMenu();
 			}
 		}
 		else										// if user doesnt select an integer
@@ -76,15 +93,108 @@ public class SWE437HW2{
 			returnValue = 2;							// sets the returnValue to 2
 			break;									// breaks out of switch
 		case 3:
-			returnValue = 3;
+			returnValue = 3;						// If user selected 3, set returnValue to 3
 			break;
-		case 4:										// if user selected 3
+		case 4:
+			returnValue = 4;						// If user selected 4, set returnValue to 4
+			break;
+		case 5:
+			returnValue = 5;						// If user selected 5, set returnValue to 4
+			break;
+		case 6:
+			returnValue = 6;						// If user selected 6, set returnValue to 4
+			break;
+		case 7:
 			System.exit(0);								// exits the program
 		default:									// default
 			System.out.println("Invalid Input!\n");					// prints Invalid Input
 			printMenue();}								// goes back to main menu
 		return returnValue;								// returns the returnValue
 	}
+
+	/**
+	 * Menu to add keyword
+	 */
+	public static void addKeywordMenu(){
+		Scanner userInput = new Scanner(System.in);
+		boolean flag = false;
+		do{
+			System.out.print("Enter keyword you want to add: ");
+			String keyword = userInput.nextLine();
+			Keyword newKeyword = new Keyword();
+			newKeyword.setKeyword(keyword);
+			System.out.println("All quotes:");
+			for(int i = 0; i < quoteList.getSize(); i++){
+				System.out.println(i + ". " + quoteList.getQuote(i));
+			}
+			System.out.print("Choose which quote to add keyword to: ");
+			userInput = new Scanner(System.in);
+			int quoteNum = userInput.nextInt();
+			userInput.nextLine();
+			quoteList.getQuote(quoteNum).addKeyword(newKeyword);
+			System.out.print("Add more keyword?(yes/no): ");
+			String moreKeyword = userInput.nextLine();
+			if(moreKeyword.equalsIgnoreCase("yes")){
+				flag = true;
+			}else{
+				System.out.println("Keyword succesfully added.");
+				flag = false;
+			}
+		}while(flag);
+		printMenue();
+	}
+
+	/**
+	 * Helper method to return keywords
+	 */
+	public static ArrayList<Keyword> getKeywordList(int i){
+		return quoteList.getQuote(i).getAllKeywords();
+	}
+
+	/**
+	 * Menu for retrieving keywords
+	 */
+	public static void getKeywordsMenu(){
+		Scanner userInput = new Scanner(System.in);
+		for(int i = 0; i < quoteList.getSize(); i++){
+			System.out.println(i + ". " + quoteList.getQuote(i));
+		}
+		System.out.print("Choose which quote to retrieve keywords from: ");
+		int input = userInput.nextInt();
+		userInput.nextLine();
+		ArrayList<Keyword> tempList = getKeywordList(input);
+		for(int i = 0; i < tempList.size(); i++){
+			System.out.println(tempList.get(i).getKeyword());
+		}
+		printMenue();
+	}
+
+	/**
+	 * Menu for deleting keyword
+	 */
+	public static void deleteKeywordMenu(){
+		Scanner userInput = new Scanner(System.in);
+		for(int i = 0; i < quoteList.getSize(); i++){
+			System.out.println(i + ". " + quoteList.getQuote(i));
+		}
+		System.out.print("Choose which quote to delete keyword from: ");
+		int input = userInput.nextInt();
+		userInput.nextLine();
+		for(int j = 0; j < getKeywordList(input).size(); j++){
+			System.out.println(j + ". " + getKeywordList(input).get(j).getKeyword());
+		}
+		System.out.print("Choose which keyword to delete: ");
+		userInput = new Scanner(System.in);
+		int keyNum = userInput.nextInt();
+		userInput.nextLine();
+		quoteList.getQuote(input).deleteKeyword(getKeywordList(input).get(keyNum));
+		for(int j = 0; j < getKeywordList(input).size(); j++){
+			System.out.println(j + ". " + getKeywordList(input).get(j).getKeyword());
+		}
+
+	}
+
+
 
 	/**
 	 * Add quote menu function
@@ -124,8 +234,9 @@ public class SWE437HW2{
 		return saveToXml("quotes.xml", quoteList);									// save the quote to xml
 	}
 
+
 	/**
-	 * @param string to validate
+	 * @param
 	 * @return return true is there's an error in input data
 	 */
 	public static boolean checkErrorInput(String text){								// data integroty check function, takes the user input
@@ -139,7 +250,7 @@ public class SWE437HW2{
 			return true;															// return true that there was an error
 		}
 		
-		if (text.toLowerCase().contains("\x89\x".toLowerCase())){					// if the text contains shell code (shell code)
+		if (text.toLowerCase().contains("'\'" +"x89x" + "'\'".toLowerCase())){					// if the text contains shell code (shell code)
 			System.out.println("Incorrect Input");									// print an error message
 			return true;															// return true that there was an error
 		}
@@ -189,7 +300,7 @@ public class SWE437HW2{
 				quote = dom.createElement("quote");												// create data elements and place them under root
 				author = dom.createElement("author");										    // create data elements and place them under root
 				author.appendChild(dom.createTextNode(tempQuote.getAuthor()));					// create data elements and place them under root
-				quoteText = dom.createElement("quote-text");									// create data elements and place them under root
+				quoteText = dom.createElement("quote-text");		 							// create data elements and place them under root
 				quoteText.appendChild(dom.createTextNode(tempQuote.getQuoteText()));			// create data elements and place them under root
 				quote.appendChild(quoteText);													// add the quote text to the quote
 				quote.appendChild(author);														// add the author's name to the quote
@@ -310,6 +421,7 @@ public class SWE437HW2{
 		System.out.println("1. Search by Author\t\t(press 1)");							// prints a msg for user
 		System.out.println("2. Search by quote\t\t(press 2)");							// prints a msg for user
 		System.out.println("3. Both\t\t\t\t(press 3)");								// prints a msg for user
+		System.out.println("4. Search quotes by keyword\t\t\t\t(press 4)");								// prints a msg for user
 		System.out.println("4. Back to Main Menu\t\t(press 4)");						// prints a msg for user
 		searchOption = keyboard.nextInt();									// takes the user criteria
 		switch(searchOption){											// switch for determining user's criteria selections
@@ -339,7 +451,16 @@ public class SWE437HW2{
 				System.out.println("\n" + quoteTmp.getQuoteText() + "\n");				// display the quote text
 				System.out.println (quoteTmp.getAuthor() + "\n");}					// display the quote author
 			break;												// breaks out of switch
-		case 4:													// if user select 4
+
+		case 4:													// if user select 3
+			returnQuotes =quoteList.search(searchText, 3);				// cross check the term for both author's name and quote text
+			savedSearches.put(searchText, returnQuotes);							// save the result to display later for saved searches
+			for (int i = 0; i < returnQuotes.getSize() ; i++){						// loops through all the results
+				quoteTmp = returnQuotes.getQuote(i);							// assign the result to quote
+				System.out.println("\n" + quoteTmp.getQuoteText() + "\n");				// display the quote text
+				System.out.println (quoteTmp.getAuthor() + "\n");}					// display the quote author
+			break;												// breaks out of switch
+		case 5:													// if user select 4
 			printMenue();											// goes back to main menu
 			break;												// breaks out of switch
 

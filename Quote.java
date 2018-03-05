@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 /**
  * Quote data object.
@@ -12,6 +12,9 @@ public class Quote
    private String author;
    private String quoteText;
 
+   // Added for assign6
+   private ArrayList<Keyword> keywords = new ArrayList<>();
+
    // Default constructor does nothing
    public Quote ()
    {
@@ -22,6 +25,24 @@ public class Quote
    {
       this.author = author;
       this.quoteText = quoteText;
+
+   }
+
+   // Method for keywords arraylist
+   public void addKeyword(Keyword keyword){
+      keywords.add(keyword);
+   }
+   public void deleteKeyword(Keyword keyword){
+      keywords.remove(keyword);
+   }
+   public boolean isKeyword(Keyword keyword){
+      if(this.keywords.contains(keyword)){
+         return true;
+      }
+      return false;
+   }
+   public ArrayList<Keyword> getAllKeywords() {
+      return keywords;
    }
 
    // Getter and setter for author

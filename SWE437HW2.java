@@ -20,7 +20,7 @@ public class SWE437HW2{
 	static HashMap<String, QuoteList> savedSearches = new HashMap<>();		// instance of HashMap to save user's searches
     static QuoteSaxParser qParser;
 	public static void main(String[] args) {
-		qParser = new QuoteSaxParser ("quotes.xml");			// reading the quotes.xml
+		qParser = new QuoteSaxParser ("quotes.xml"); // reading the quotes.xml
 		quoteList = qParser.getQuoteList();					// saving the quotes.xml to quotelist
 		printMenue();									// print main menu
 	}
@@ -422,7 +422,7 @@ public class SWE437HW2{
 		System.out.println("2. Search by quote\t\t(press 2)");							// prints a msg for user
 		System.out.println("3. Both\t\t\t\t(press 3)");								// prints a msg for user
 		System.out.println("4. Search quotes by keyword\t\t\t\t(press 4)");								// prints a msg for user
-		System.out.println("4. Back to Main Menu\t\t(press 4)");						// prints a msg for user
+		System.out.println("5. Back to Main Menu\t\t(press 5)");						// prints a msg for user
 		searchOption = keyboard.nextInt();									// takes the user criteria
 		switch(searchOption){											// switch for determining user's criteria selections
 

@@ -20,7 +20,7 @@ public class SWE437HW2{
 	static HashMap<String, QuoteList> savedSearches = new HashMap<>();		// instance of HashMap to save user's searches
     static QuoteSaxParser qParser;
 	public static void main(String[] args) {
-		qParser = new QuoteSaxParser ("src/quotes.xml");			// reading the quotes.xml
+		qParser = new QuoteSaxParser ("quotes.xml");			// reading the quotes.xml
 		quoteList = qParser.getQuoteList();					// saving the quotes.xml to quotelist
 		printMenue();									// print main menu
 	}

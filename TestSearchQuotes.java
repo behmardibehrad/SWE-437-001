@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class TestSearchQuotes {
-    QuoteSaxParser qParser = new QuoteSaxParser ("src/quotes.xml");
+    QuoteSaxParser qParser = new QuoteSaxParser ("quotes.xml");
     QuoteList quoteList = qParser.getQuoteList();
 
     @Test public void testSearchQuotesByKeyword(){
